@@ -68,6 +68,8 @@
 2026-09-07 17:51:17 | INFO     | [up_agri_seed_rates] Downloading https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d -> /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/data/up_agri_seed_rates/raw.pdf
 2026-09-07 17:51:22 | INFO     | [up_agri_seed_rates] Saved 648333 bytes
 2026-09-07 17:51:22 | INFO     | [up_agri_seed_rates] Overriding modality 'pdf' -> extract_hindi_pdf
+/Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/.venv/lib/python3.10/site-packages/paddle/utils/cpp_extension/extension_utils.py:718: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
+  warnings.warn(warning_message)
 2026-09-07 17:51:56 | INFO     | [up_agri_seed_rates] Tool 'extract_hindi_pdf' extracted 795 chars -> /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/data/up_agri_seed_rates/extracted.txt
 2026-09-07 17:51:56 | INFO     | [up_agri_seed_rates] MongoDB: Inserted document 6a9eac64ebd1733299272d40
 2026-09-07 17:51:56 | INFO     | [up_agri_seed_rates] Agent prompt: Extract this Hindi UP Agriculture PDF and save it to MongoDB: https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d

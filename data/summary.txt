@@ -1,0 +1,9 @@
+Run at: 2026-09-07T12:24:05.807289+00:00
+Sources: 6
+
+upag_market_intelligence | tool=scrape_dynamic | tool_chars=208 | agent=success | tool_error= | agent_error=
+iipr_varieties | tool=scrape_web | tool_chars=22580 | agent=success | tool_error= | agent_error=
+iipr_new_varieties | tool=scrape_web | tool_chars=42078 | agent=success | tool_error= | agent_error=
+iipr_technologies | tool=scrape_web | tool_chars=28710 | agent=success | tool_error= | agent_error=
+up_agri_seed_rates | tool=extract_hindi_pdf | tool_chars=795 | agent=success | tool_error= | agent_error=
+gda_rapeseed_2024 | tool=scrape_web | tool_chars=3039 | agent=success | tool_error= | agent_error=

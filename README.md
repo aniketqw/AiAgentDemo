@@ -31,6 +31,9 @@ MongoDB tools (save / search)
   file wraps the plain function and tells the agent *when* to use it.
 - **The agent is a decision layer.** It does not scrape, parse, or store data.
   It only chooses which tool to call.
+- **End-to-end pipelines keep small local LLMs honest.** For Hindi PDFs that
+  must also be saved, a single `extract_and_save_hindi_pdf` tool performs both
+  extraction and persistence so the LLM cannot invent text or IDs by accident.
 
 ## Prerequisites
 
@@ -107,9 +110,9 @@ You should see `{ ok: 1 }`.
 ├── .env.example         # template
 ├── requirements.txt     # Python dependencies
 ├── config.py            # shared Ollama + MongoDB clients
-├── agent.py             # ReAct agent assembly
-├── agent_hindi.py       # Hindi-aware ReAct agent
+├── agent.py             # single ReAct agent with all tools
 ├── demo.py              # CLI to test every layer standalone
+├── run_all.py           # end-to-end: download, extract, save, run agent
 ├── tools/               # one subpackage per capability
 │   ├── __init__.py      # re-exports all @tool wrappers
 │   ├── static_scraper/
@@ -136,12 +139,18 @@ You should see `{ ok: 1 }`.
 │   └── smart_scraper/
 │       ├── core.py      # static-then-Playwright fallback logic
 │       └── tool.py      # scrape_web @tool wrapper
-└── test/                # no-LLM agriculture source test suite
-    ├── test_sources.py  # runner for every source in sources.csv
-    ├── README.md        # setup + MongoDB screenshot guide
-    ├── logs/            # per-source terminal output
-    ├── outputs/         # per-source extracted text
-    └── summary.txt      # final status table after each run
+├── data/                # downloaded raw files + extracted text + agent answers
+│   └── summary.txt
+├── test/                # no-LLM agriculture source test suite
+│   ├── test_sources.py  # runner for every source in sources.csv
+│   ├── README.md        # setup + MongoDB screenshot guide
+│   ├── logs/            # per-source terminal output
+│   ├── outputs/         # per-source extracted text
+│   └── summary.txt
+└── logs/                # full console captures and agent runs
+    ├── run_all_console.txt
+    ├── final_mongo_run_all.txt
+    └── test_sources_rerun.txt
 ```
 
 ## Tool name reference
@@ -155,7 +164,7 @@ Each capability has a **core function** (plain Python) and a **tool name** (what
 | Smart scraper with fallback | `tools/smart_scraper/` | `scrape_with_fallback()` | `scrape_web` | `python demo.py web <url>` |
 | PDF extractor | `tools/pdf_extractor/` | `pdf_extractor()` | `extract_pdf` | `python demo.py pdf <url>` |
 | Hindi PDF extractor | `tools/hindi_pdf_extractor/` | `hindi_pdf_extractor()` | `extract_hindi_pdf` | `python demo.py hindi_pdf <url>` |
-| Hindi PDF + save pipeline | `tools/pipelines/` | `extract_and_save_hindi_pdf_core()` | `extract_and_save_hindi_pdf` | used by `agent_hindi` |
+| Hindi PDF + save pipeline | `tools/pipelines/` | `extract_and_save_hindi_pdf_core()` | `extract_and_save_hindi_pdf` | used by `agent.py` |
 | MongoDB save | `tools/mongodb/` | `mongo_insert()` | `save_to_mongodb` | `python demo.py save "<text>" "<source>"` |
 | MongoDB search | `tools/mongodb/` | `mongo_find()` | `search_mongodb` | `python demo.py mongo [source_filter]` |
 
@@ -255,90 +264,83 @@ python demo.py mongo
 python demo.py mongo https://example.com
 ```
 
-## Run the full ReAct agent
+## Run the complete end-to-end pipeline
+
+`run_all.py` is the single command that demonstrates the whole acquisition
+pipeline:
+
+1. Reads `/Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/5sep/sources.csv`.
+2. Downloads every source to `data/<source_id>/raw.*`.
+3. Extracts text with the correct tool and saves it to `data/<source_id>/extracted.txt`.
+4. Inserts the extracted text into MongoDB.
+5. Asks the agent to perform the same acquisition + storage end-to-end and
+   saves the agent answer to `data/<source_id>/agent_answer.txt`.
+
+```bash
+python run_all.py
+```
+
+After it finishes, inspect:
+
+- `logs/run_all_console.txt` — full terminal output
+- `data/summary.txt` — one-line status per source
+- `data/<source_id>/agent_answer.txt` — what the agent returned for that source
+- `logs/final_mongo_run_all.txt` — MongoDB state after the run
+
+Example agent prompts used by `run_all.py`:
+
+| Source | Agent task |
+|---|---|
+| `upag_market_intelligence` | Use Playwright to scrape this JavaScript-rendered page and save it to MongoDB |
+| `iipr_varieties` | Acquire the content from this agriculture source and save it to MongoDB |
+| `iipr_new_varieties` | Acquire the content from this agriculture source and save it to MongoDB |
+| `iipr_technologies` | Acquire the content from this agriculture source and save it to MongoDB |
+| `up_agri_seed_rates` | Extract this Hindi UP Agriculture PDF and save it to MongoDB |
+| `gda_rapeseed_2024` | Acquire the content from this agriculture source and save it to MongoDB |
+
+## Run the ReAct agent manually
+
+There is a **single agent** in `agent.py`. It includes all tools, including the
+Hindi PDF pipeline, so you can test any end-to-end workflow through one entry
+point.
+
+### Basic scrape + save
 
 ```bash
 python demo.py agent "Scrape https://example.com and store the result in MongoDB"
 ```
 
-You should see the agent reason step by step:
+Expected flow:
 
 1. Decide to call `scrape_static`.
 2. Receive the cleaned text.
 3. Decide to call `save_to_mongodb`.
-4. Return a final answer.
+4. Return a final answer with the inserted document ID.
 
-Other examples:
+### Hindi PDF + save
+
+For scanned Hindi/Devanagari PDFs, the agent should pick the combined
+`extract_and_save_hindi_pdf` tool. This is safer than chaining
+`extract_hindi_pdf` → `save_to_mongodb` because a small local LLM can
+hallucinate text or IDs when it has to copy content across calls.
 
 ```bash
-python demo.py agent "What PDFs have I stored?"
+python demo.py agent "Extract this Hindi UP Agriculture PDF and save it to MongoDB: https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d"
+```
+
+Expected output:
+
+```text
+Extracted 795 characters from https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d. Inserted document 6a9eac8cebd1733299272d41.
+```
+
+### Other agent examples
+
+```bash
+python demo.py agent "What have I stored in MongoDB?"
 python demo.py agent "Extract text from https://example.com/file.pdf"
 python demo.py agent "Use Playwright to inspect https://example.com"
 ```
-
-## Run the Hindi-aware ReAct agent
-
-This agent knows when to use `extract_pdf` (English) vs `extract_hindi_pdf`
-(Hindi / Devanagari). For Hindi PDFs that also need to be saved, it uses a
-combined `extract_and_save_hindi_pdf` pipeline so the local LLM does not have
-to copy extracted text across two separate tool calls (a common source of
-hallucination with small models).
-
-```bash
-python demo.py agent_hindi "Extract this Hindi UP Agriculture PDF and save it to MongoDB: https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d"
-```
-
-It will:
-
-1. Detect a Hindi/Devanagari PDF context.
-2. Call `extract_and_save_hindi_pdf(url)`.
-3. Receive the real MongoDB insertion message and return it.
-
-Example output:
-
-```text
-Extracted 795 characters from https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d. Inserted document 6a9e9c9d1019dc3cc3d95a1b.
-```
-
-Verify the save in MongoDB:
-
-```bash
-python demo.py mongo "https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d"
-```
-
-The standalone extraction output is saved in:
-
-- `test/outputs/up_agri_seed_rates.txt` — automated OCR + heuristic formatting
-- `test/outputs/up_agri_seed_rates_reference.txt` — manually corrected transcript
-  from the scanned image, for comparison only
-
-The agent run is logged in:
-
-- `logs/agent_hindi_run2.txt`
-
-The final MongoDB state after the test suite + agent is logged in:
-
-- `logs/final_mongo_state.txt`
-
-### Hindi PDF formatting modes
-
-`extract_hindi_pdf` / `extract_and_save_hindi_pdf` support three formatting modes:
-
-```python
-from tools.hindi_pdf_extractor.core import hindi_pdf_extractor
-
-# Default: safe heuristic reformatting (paragraphs + Markdown table attempt).
-# No words or numbers are changed, so factual fidelity is preserved.
-text = hindi_pdf_extractor(url, format_mode="heuristic")
-
-# Raw OCR output, one visual line per line. Good for debugging recognition.
-text = hindi_pdf_extractor(url, format_mode="raw")
-
-# Local LLM cleanup. More readable but may invent table rows or prices.
-text = hindi_pdf_extractor(url, format_mode="llm")
-```
-
-The CLI and the agriculture test suite use `"heuristic"` by default.
 
 ## Run the agriculture source test suite
 
@@ -366,6 +368,26 @@ The source CSV is loaded from the original repo path:
 See `test/README.md` for full setup, troubleshooting, and **MongoDB Compass
 screenshot directions**.
 
+### Hindi PDF formatting modes
+
+`extract_hindi_pdf` / `extract_and_save_hindi_pdf` support three formatting modes:
+
+```python
+from tools.hindi_pdf_extractor.core import hindi_pdf_extractor
+
+# Default: safe heuristic reformatting (paragraphs + Markdown table attempt).
+# No words or numbers are changed, so factual fidelity is preserved.
+text = hindi_pdf_extractor(url, format_mode="heuristic")
+
+# Raw OCR output, one visual line per line. Good for debugging recognition.
+text = hindi_pdf_extractor(url, format_mode="raw")
+
+# Local LLM cleanup. More readable but may invent table rows or prices.
+text = hindi_pdf_extractor(url, format_mode="llm")
+```
+
+The CLI, `run_all.py`, and the agriculture test suite use `"heuristic"` by default.
+
 ### Important note on the UP Agriculture seed-rates PDF
 
 The PDF at `up_agri_seed_rates` is a scanned Hindi/Devanagari document. The base
@@ -380,9 +402,14 @@ mis-recognized. The default `"heuristic"` mode improves readability by grouping
 words into lines/paragraphs and attempting a Markdown table, but it does **not**
 change any words or numbers, so it remains a faithful (if noisy) extraction.
 
-For a fully accurate transcript you would need either a stronger OCR model
-(e.g. a fine-tuned Devanagari model or cloud OCR) or manual review of the
-scanned page.
+For comparison, `test/outputs/up_agri_seed_rates_reference.txt` contains a
+manually corrected transcript of the scanned page. It is **not** produced by
+the pipeline; it is only there so students can compare OCR output against the
+document.
+
+For a fully accurate transcript in production you would need either a stronger
+OCR model (e.g. a fine-tuned Devanagari model or cloud OCR) or manual review of
+the scanned page.
 
 ## Architecture
 

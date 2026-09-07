@@ -112,6 +112,17 @@ def _extension_from_url(url: str) -> str:
     return ".html"
 
 
+# Browser-like headers so sites like ICAR-IIPR do not block plain requests.
+DOWNLOAD_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+        "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+    ),
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+    "Accept-Language": "en-US,en;q=0.9",
+}
+
+
 def download_source(source: dict[str, str]) -> Path:
     """Download the raw source bytes and save under data/<source_id>/."""
     source_id = source["source_id"]
@@ -132,7 +143,7 @@ def download_source(source: dict[str, str]) -> Path:
     out_path = out_dir / filename
 
     logger.info("[%s] Downloading %s -> %s", source_id, url, out_path)
-    response = requests.get(url, timeout=120)
+    response = requests.get(url, headers=DOWNLOAD_HEADERS, timeout=120)
     response.raise_for_status()
     out_path.write_bytes(response.content)
     logger.info("[%s] Saved %d bytes", source_id, len(response.content))

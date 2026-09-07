@@ -1,0 +1,23 @@
+The content from the agriculture source has been acquired and saved to MongoDB. The result is:
+
+Product Title: GDA CropID map for 2024 South Asia (250-meters)
+Produced By: GDA Corp (GeoSpatial Data Analysis Corporation)
+Released: May 1, 2024
+Referencing the File: GDA CropID GIS map shall be referred to, in all instances, as "GDA_CropID_SouthAsia_2024_RapeseedWinter_250m"
+Abstract: GDA CropID 2024 South Asia map is a GIS raster format product with 250-meter spatial resolution. The map offers 2024 winter (rabi) rapeseed locations for the top four rapeseed-producing provinces of India (Rajasthan, Uttar Pradesh, Madhya Pradesh, and Haryana), along with all of Bangladesh.
+Coverage: Top four major rapeseed-producing provinces in India (Rajasthan, Uttar Pradesh, Madhya Pradesh, and Haryana) and full coverage of Bangladesh.
+Spatial Resolution: 250-meters. The original classification is performed at 10-meters.
+File Format: GeoTIFF
+Projection: ESPG:3857, WGS 84 / Pseudo-Mercator.
+Crop Harvest Year: 2024
+Classification Categories: ID  NAME
+96 Rape Seed / Canola (Winter / Rabi)
+Crop Area Estimates: GDA 2024 South Asian winter/rabi rapeseed area estimates are available in CropSignal™ under the "GDA Area" source.
+License: GDA grants USDA Foreign Agricultural Service (FAS) a Federal Government-wide license to utilize the 250-meter products for Federal Government applications such as the USDA/NASA GLAM system (
+https://glam1.gsfc.nasa.gov/
+)
+GDA grants USDA FAS a license to share derivative GIS and non-GIS thematic products, maps, analytical products, and/or reporting created by USDA FAS with Federal Government, USDA FAS partners, and the public.
+Technical data, computer software developed, and/or source code developed under this contract is furnished with SBIR Data Rights (according to FAR 52.227-20 Rights in Data—SBIR Program).
+Resource Contact: Dmitry Varlyguin, GDA Corp. / Chief Scientist; dmitry @ gdacorp . com
+Copyright: GDA Corp.; 301 Science Park Road, Suite 112, State College, PA, USA 16803;
+http://www.GDAcorp.com

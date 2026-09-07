@@ -156,20 +156,21 @@ Output is written to:
 - `test/outputs/up_agri_seed_rates_reference.txt` — manually corrected transcript
   from the scanned image, for comparison only (not produced by the pipeline)
 
-Or run the Hindi-aware agent, which uses a combined `extract_and_save_hindi_pdf`
-pipeline to extract and persist in one tool call (more reliable with a local LLM):
+Or run the single agent, which includes the combined `extract_and_save_hindi_pdf`
+pipeline and will extract and persist the Hindi PDF in one tool call (more
+reliable with a local LLM):
 
 ```bash
-python demo.py agent_hindi "Extract this Hindi UP Agriculture PDF and save it to MongoDB: https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d"
+python demo.py agent "Extract this Hindi UP Agriculture PDF and save it to MongoDB: https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d"
 ```
 
 Agent run is logged in:
 
-- `logs/agent_hindi_run2.txt`
+- `logs/run_all_console.txt` (when using `run_all.py`)
 
 The final MongoDB state after the test suite + agent is logged in:
 
-- `logs/final_mongo_state.txt`
+- `logs/final_mongo_run_all.txt`
 
 ### What the saved file looks like
 
@@ -210,8 +211,8 @@ After a successful run of `test/test_sources.py`:
 - 6 documents in MongoDB `agent_demo.documents`
 - `test/summary.txt` shows all sources as `success`
 
-If you also run the Hindi-aware agent (`demo.py agent_hindi ...`) on the UP
-Agriculture PDF, a 7th document is inserted for the same source.
+If you also run the agent (`demo.py agent ...`) on the UP Agriculture PDF,
+a 7th document is inserted for the same source.
 
 ## Troubleshooting
 
