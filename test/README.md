@@ -110,23 +110,23 @@ exactly what the test saved.
 1. Open MongoDB Compass.
 2. Create or select the connection: `mongodb://localhost:27017`.
 3. Click **Connect**.
-4. Screenshot the connection tile / connected status.
+4. ![alt text](images/image.png)
 
 ### Screenshot 2 — Database + collection list
 
 1. In the left sidebar, click on **`agent_demo`** database.
 2. You should see the `documents` collection.
-3. Screenshot the database view showing `documents`.
+3. ![alt text](images/image-1.png)
 
 ### Screenshot 3 — Documents list view
 
 1. Click on the **`documents`** collection.
 2. Make sure the **Documents** tab is selected (not Aggregations / Schema).
-3. Screenshot the list of documents. Each row shows:
+3. ![alt text](images/image2.png) Each row shows:
    - `_id`
    - `source` (the URL)
    - `text` (preview, truncated)
-4. The count badge at the top should show **6 documents**.
+
 
 ### Screenshot 4 — Filtered view for one source
 
@@ -135,26 +135,8 @@ exactly what the test saved.
    {"source": "https://www.icar-iipr.org.in/varity/"}
    ```
 2. Press Enter or click **Find**.
-3. Screenshot the filtered result showing exactly the `iipr_varieties` document.
+   ![alt text](images/image3.png)
 
-### Screenshot 5 — Document detail view
-
-1. Click on one of the documents in the list (for example the `iipr_varieties` row).
-2. Compass opens the document detail view with JSON on the left and a table
-   view on the right.
-3. Screenshot the full JSON view showing:
-   - `_id`
-   - `source`
-   - `text` field with the extracted content
-
-### Screenshot 6 — Terminal summary
-
-1. In your terminal, run:
-   ```bash
-   cat test/summary.txt
-   ```
-2. Screenshot the summary output showing all 6 sources with status, character
-   counts, and MongoDB insertion results.
 
 ## Expected final state
 

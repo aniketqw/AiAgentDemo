@@ -1,12 +1,12 @@
-2026-09-07 13:31:51 | INFO     | ======================================================================
-2026-09-07 13:31:51 | INFO     | SOURCE: gda_rapeseed_2024
-2026-09-07 13:31:51 | INFO     | NAME:   GDA CropID 2024 Rabi Rapeseed – Product Documentation
-2026-09-07 13:31:51 | INFO     | MODALITY: web_doc
-2026-09-07 13:31:51 | INFO     | URL:    https://glam1.gsfc.nasa.gov/api/doc/cropmask/v1/GDA-CropID-SouthAsia_2024_RapeseedWinter
-2026-09-07 13:31:51 | INFO     | ======================================================================
-2026-09-07 13:31:51 | INFO     | Invoking tool: scrape_web
-2026-09-07 13:31:53 | INFO     | Extraction successful: 3039 characters
-2026-09-07 13:31:53 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/gda_rapeseed_2024.txt
-2026-09-07 13:32:23 | ERROR    | FAILED: ServerSelectionTimeoutError: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6a9e6eb9ffe278c8814a2647, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
-2026-09-07 13:32:23 | INFO     | Source run finished: failed
-2026-09-07 13:32:23 | INFO     | ======================================================================
+2026-09-07 13:44:51 | INFO     | ======================================================================
+2026-09-07 13:44:51 | INFO     | SOURCE: gda_rapeseed_2024
+2026-09-07 13:44:51 | INFO     | NAME:   GDA CropID 2024 Rabi Rapeseed – Product Documentation
+2026-09-07 13:44:51 | INFO     | MODALITY: web_doc
+2026-09-07 13:44:51 | INFO     | URL:    https://glam1.gsfc.nasa.gov/api/doc/cropmask/v1/GDA-CropID-SouthAsia_2024_RapeseedWinter
+2026-09-07 13:44:51 | INFO     | ======================================================================
+2026-09-07 13:44:51 | INFO     | Invoking tool: scrape_web
+2026-09-07 13:44:53 | INFO     | Extraction successful: 3039 characters
+2026-09-07 13:44:53 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/gda_rapeseed_2024.txt
+2026-09-07 13:44:53 | INFO     | MongoDB: Inserted document 6a9e727d8bffeab20e951c25
+2026-09-07 13:44:53 | INFO     | Source run finished: success
+2026-09-07 13:44:53 | INFO     | ======================================================================

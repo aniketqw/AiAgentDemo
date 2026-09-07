@@ -1,12 +1,12 @@
-2026-09-07 13:30:39 | INFO     | ======================================================================
-2026-09-07 13:30:39 | INFO     | SOURCE: iipr_technologies
-2026-09-07 13:30:39 | INFO     | NAME:   ICAR-IIPR – Technologies
-2026-09-07 13:30:39 | INFO     | MODALITY: web
-2026-09-07 13:30:39 | INFO     | URL:    https://www.icar-iipr.org.in/technologies/
-2026-09-07 13:30:39 | INFO     | ======================================================================
-2026-09-07 13:30:39 | INFO     | Invoking tool: scrape_web
-2026-09-07 13:30:42 | INFO     | Extraction successful: 28710 characters
-2026-09-07 13:30:42 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_technologies.txt
-2026-09-07 13:31:12 | ERROR    | FAILED: ServerSelectionTimeoutError: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6a9e6eb9ffe278c8814a2647, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
-2026-09-07 13:31:12 | INFO     | Source run finished: failed
-2026-09-07 13:31:12 | INFO     | ======================================================================
+2026-09-07 13:44:40 | INFO     | ======================================================================
+2026-09-07 13:44:40 | INFO     | SOURCE: iipr_technologies
+2026-09-07 13:44:40 | INFO     | NAME:   ICAR-IIPR – Technologies
+2026-09-07 13:44:40 | INFO     | MODALITY: web
+2026-09-07 13:44:40 | INFO     | URL:    https://www.icar-iipr.org.in/technologies/
+2026-09-07 13:44:40 | INFO     | ======================================================================
+2026-09-07 13:44:40 | INFO     | Invoking tool: scrape_web
+2026-09-07 13:44:43 | INFO     | Extraction successful: 28710 characters
+2026-09-07 13:44:43 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_technologies.txt
+2026-09-07 13:44:43 | INFO     | MongoDB: Inserted document 6a9e72738bffeab20e951c23
+2026-09-07 13:44:43 | INFO     | Source run finished: success
+2026-09-07 13:44:43 | INFO     | ======================================================================

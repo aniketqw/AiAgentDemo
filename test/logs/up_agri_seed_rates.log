@@ -1,12 +1,12 @@
-2026-09-07 13:31:12 | INFO     | ======================================================================
-2026-09-07 13:31:12 | INFO     | SOURCE: up_agri_seed_rates
-2026-09-07 13:31:12 | INFO     | NAME:   UP Agriculture Department – Rabi 2025–26 Certified Seed Rates
-2026-09-07 13:31:12 | INFO     | MODALITY: pdf
-2026-09-07 13:31:12 | INFO     | URL:    https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d
-2026-09-07 13:31:12 | INFO     | ======================================================================
-2026-09-07 13:31:12 | INFO     | Invoking tool: extract_pdf
-2026-09-07 13:31:20 | INFO     | Extraction successful: 1340 characters
-2026-09-07 13:31:20 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/up_agri_seed_rates.txt
-2026-09-07 13:31:51 | ERROR    | FAILED: ServerSelectionTimeoutError: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6a9e6eb9ffe278c8814a2647, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
-2026-09-07 13:31:51 | INFO     | Source run finished: failed
-2026-09-07 13:31:51 | INFO     | ======================================================================
+2026-09-07 13:44:43 | INFO     | ======================================================================
+2026-09-07 13:44:43 | INFO     | SOURCE: up_agri_seed_rates
+2026-09-07 13:44:43 | INFO     | NAME:   UP Agriculture Department – Rabi 2025–26 Certified Seed Rates
+2026-09-07 13:44:43 | INFO     | MODALITY: pdf
+2026-09-07 13:44:43 | INFO     | URL:    https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d
+2026-09-07 13:44:43 | INFO     | ======================================================================
+2026-09-07 13:44:43 | INFO     | Invoking tool: extract_pdf
+2026-09-07 13:44:51 | INFO     | Extraction successful: 1340 characters
+2026-09-07 13:44:51 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/up_agri_seed_rates.txt
+2026-09-07 13:44:51 | INFO     | MongoDB: Inserted document 6a9e727b8bffeab20e951c24
+2026-09-07 13:44:51 | INFO     | Source run finished: success
+2026-09-07 13:44:51 | INFO     | ======================================================================
