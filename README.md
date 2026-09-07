@@ -64,6 +64,25 @@ MONGODB_DB_NAME=agent_demo
 MONGODB_COLLECTION=documents
 ```
 
+### Install and start MongoDB (macOS with Homebrew)
+
+If MongoDB is not installed:
+
+```bash
+brew tap mongodb/brew
+brew trust mongodb/brew
+brew install mongodb-community@7.0
+```
+
+Start MongoDB and verify:
+
+```bash
+brew services start mongodb/brew/mongodb-community@7.0
+mongosh --eval "db.adminCommand('ping')"
+```
+
+You should see `{ ok: 1 }`.
+
 ## Project layout
 
 ```text
@@ -72,6 +91,8 @@ MONGODB_COLLECTION=documents
 ├── .env.example         # template
 ├── requirements.txt     # Python dependencies
 ├── config.py            # shared Ollama + MongoDB clients
+├── agent.py             # ReAct agent assembly
+├── demo.py              # CLI to test every layer standalone
 ├── tools/               # one subpackage per capability
 │   ├── __init__.py      # re-exports all @tool wrappers
 │   ├── static_scraper/
@@ -89,10 +110,26 @@ MONGODB_COLLECTION=documents
 │   └── smart_scraper/
 │       ├── core.py      # static-then-Playwright fallback logic
 │       └── tool.py      # scrape_web @tool wrapper
-├── agent.py             # ReAct agent assembly
-├── demo.py              # CLI to test every layer standalone
-└── README.md            # this file
+└── test/                # no-LLM agriculture source test suite
+    ├── test_sources.py  # runner for every source in sources.csv
+    ├── README.md        # setup + MongoDB screenshot guide
+    ├── logs/            # per-source terminal output
+    ├── outputs/         # per-source extracted text
+    └── summary.txt      # final status table after each run
 ```
+
+## Tool name reference
+
+Each capability has a **core function** (plain Python) and a **tool name** (what the agent and demo CLI use).
+
+| Capability | Folder | Core function | Tool name | CLI command |
+|---|---|---|---|---|
+| Static web scraper | `tools/static_scraper/` | `static_scraper()` | `scrape_static` | `python demo.py static <url>` |
+| Dynamic / Playwright scraper | `tools/dynamic_scraper/` | `playwright_scraper()` | `scrape_dynamic` | `python demo.py playwright <url>` |
+| Smart scraper with fallback | `tools/smart_scraper/` | `scrape_with_fallback()` | `scrape_web` | `python demo.py web <url>` |
+| PDF extractor | `tools/pdf_extractor/` | `pdf_extractor()` | `extract_pdf` | `python demo.py pdf <url>` |
+| MongoDB save | `tools/mongodb/` | `mongo_insert()` | `save_to_mongodb` | `python demo.py save "<text>" "<source>"` |
+| MongoDB search | `tools/mongodb/` | `mongo_find()` | `search_mongodb` | `python demo.py mongo [source_filter]` |
 
 ## How the tools package is organized
 
@@ -111,7 +148,7 @@ Import examples:
 
 ```python
 # From the package level (used by agent.py and demo.py)
-from tools import scrape_static, extract_pdf, save_to_mongodb
+from tools import scrape_static, scrape_dynamic, extract_pdf, save_to_mongodb, search_mongodb
 
 # From a specific capability core (used for unit testing)
 from tools.static_scraper.core import static_scraper
@@ -121,9 +158,11 @@ from tools.mongodb.core import mongo_find
 ## Run standalone capability tests
 
 These commands test each tool **without the LLM**, which is the best way to
-debug one layer at a time.
+debug one layer at a time. Use the table above to map a task to the right tool.
 
-### 1. Static scraper
+### 1. Static scraper (`scrape_static`)
+
+Use this for normal HTML pages where the content is already in the server response.
 
 ```bash
 python demo.py static https://example.com
@@ -131,7 +170,9 @@ python demo.py static https://example.com
 
 Uses `requests` + `BeautifulSoup`. Strips scripts, styles, nav, footer, etc.
 
-### 2. Dynamic / Playwright scraper
+### 2. Dynamic / Playwright scraper (`scrape_dynamic`)
+
+Use this for JavaScript-rendered pages that need a real browser.
 
 ```bash
 python demo.py playwright https://example.com
@@ -140,7 +181,20 @@ python demo.py playwright https://example.com
 Launches headless Chromium, waits for JavaScript rendering, then extracts
 visible text.
 
-### 3. PDF extractor
+### 3. Smart scraper (`scrape_web`)
+
+Use this when you are unsure whether a page is static or dynamic.
+
+```bash
+python demo.py web https://example.com
+```
+
+Tries a fast static fetch first; falls back to Playwright only if the result
+looks like an empty JavaScript shell.
+
+### 4. PDF extractor (`extract_pdf`)
+
+Use this for PDF URLs.
 
 ```bash
 python demo.py pdf https://example.com/sample.pdf
@@ -148,16 +202,7 @@ python demo.py pdf https://example.com/sample.pdf
 
 Tries `pypdf`, then `pymupdf`, then OCR via `pytesseract`.
 
-### 4. Smart scraper (static → Playwright fallback)
-
-```bash
-python demo.py web https://example.com
-```
-
-Tries a fast static fetch first; falls back to Playwright only if the page
-looks like an empty JavaScript shell.
-
-### 5. MongoDB save / search
+### 5. MongoDB save / search (`save_to_mongodb` / `search_mongodb`)
 
 ```bash
 # Save directly
@@ -190,6 +235,31 @@ python demo.py agent "What PDFs have I stored?"
 python demo.py agent "Extract text from https://example.com/file.pdf"
 python demo.py agent "Use Playwright to inspect https://example.com"
 ```
+
+## Run the agriculture source test suite
+
+The `test/` folder contains a no-LLM runner that tests every source from the
+original `sources.csv` and saves results.
+
+```bash
+python test/test_sources.py
+```
+
+This produces:
+
+- `test/logs/<source_id>.log` — full terminal output per source
+- `test/outputs/<source_id>.txt` — extracted text per source
+- `test/summary.txt` — final status table
+- one MongoDB document per source in `agent_demo.documents`
+
+The source CSV is loaded from the original repo path:
+
+```text
+/Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/5sep/sources.csv
+```
+
+See `test/README.md` for full setup, troubleshooting, and **MongoDB Compass
+screenshot directions**.
 
 ## Architecture
 
