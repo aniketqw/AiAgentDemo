@@ -292,15 +292,4 @@ screenshot directions**.
                             MongoDB
 ```
 
-## Learning progression
 
-This repo is intentionally minimal. Once these four capabilities are clear,
-the next layer to add would be:
-
-1. **Chunking** with `RecursiveCharacterTextSplitter`.
-2. **Structured extraction** with Ollama + `pydantic`.
-3. **Separate MongoDB collections** for `sources`, `chunks`, and `facts`.
-4. **Retrieval / query agent** over stored structured facts.
-
-That sequence mirrors the full original pipeline while keeping each step
-understandable in isolation.
