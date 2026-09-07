@@ -1,12 +1,12 @@
-2026-09-07 13:44:40 | INFO     | ======================================================================
-2026-09-07 13:44:40 | INFO     | SOURCE: iipr_technologies
-2026-09-07 13:44:40 | INFO     | NAME:   ICAR-IIPR – Technologies
-2026-09-07 13:44:40 | INFO     | MODALITY: web
-2026-09-07 13:44:40 | INFO     | URL:    https://www.icar-iipr.org.in/technologies/
-2026-09-07 13:44:40 | INFO     | ======================================================================
-2026-09-07 13:44:40 | INFO     | Invoking tool: scrape_web
-2026-09-07 13:44:43 | INFO     | Extraction successful: 28710 characters
-2026-09-07 13:44:43 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_technologies.txt
-2026-09-07 13:44:43 | INFO     | MongoDB: Inserted document 6a9e72738bffeab20e951c23
-2026-09-07 13:44:43 | INFO     | Source run finished: success
-2026-09-07 13:44:43 | INFO     | ======================================================================
+2026-09-07 16:42:11 | INFO     | ======================================================================
+2026-09-07 16:42:11 | INFO     | SOURCE: iipr_technologies
+2026-09-07 16:42:11 | INFO     | NAME:   ICAR-IIPR – Technologies
+2026-09-07 16:42:11 | INFO     | MODALITY: web
+2026-09-07 16:42:11 | INFO     | URL:    https://www.icar-iipr.org.in/technologies/
+2026-09-07 16:42:11 | INFO     | ======================================================================
+2026-09-07 16:42:11 | INFO     | Invoking tool: scrape_web
+2026-09-07 16:42:15 | INFO     | Extraction successful: 28710 characters
+2026-09-07 16:42:15 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_technologies.txt
+2026-09-07 16:42:15 | INFO     | MongoDB: Inserted document 6a9e9c0fc697d67936951314
+2026-09-07 16:42:15 | INFO     | Source run finished: success
+2026-09-07 16:42:15 | INFO     | ======================================================================

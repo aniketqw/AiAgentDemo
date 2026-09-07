@@ -28,6 +28,7 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from config import test_mongodb
 from tools.dynamic_scraper.tool import scrape_dynamic
+from tools.hindi_pdf_extractor.tool import extract_hindi_pdf
 from tools.mongodb.tool import save_to_mongodb
 from tools.pdf_extractor.tool import extract_pdf
 from tools.smart_scraper.tool import scrape_web
@@ -120,7 +121,14 @@ def test_source(source: dict[str, str]) -> dict[str, str]:
     logger.info("URL:    %s", url)
     logger.info("=" * 70)
 
-    tool_func = TOOL_ROUTER.get(modality)
+    # The UP Agriculture seed-rates PDF is a scanned Hindi/Devanagari document.
+    # Tesseract (extract_pdf) produces gibberish on it, so force PaddleOCR.
+    if source_id == "up_agri_seed_rates":
+        tool_func = extract_hindi_pdf
+        logger.info("Overriding modality '%s' → extract_hindi_pdf for Hindi PDF", modality)
+    else:
+        tool_func = TOOL_ROUTER.get(modality)
+
     if tool_func is None:
         message = f"Unknown modality '{modality}' — no tool available."
         logger.error(message)

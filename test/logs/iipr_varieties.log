@@ -1,12 +1,12 @@
-2026-09-07 13:44:33 | INFO     | ======================================================================
-2026-09-07 13:44:33 | INFO     | SOURCE: iipr_varieties
-2026-09-07 13:44:33 | INFO     | NAME:   ICAR-IIPR – Variety Database
-2026-09-07 13:44:33 | INFO     | MODALITY: web
-2026-09-07 13:44:33 | INFO     | URL:    https://www.icar-iipr.org.in/varity/
-2026-09-07 13:44:33 | INFO     | ======================================================================
-2026-09-07 13:44:33 | INFO     | Invoking tool: scrape_web
-2026-09-07 13:44:36 | INFO     | Extraction successful: 22580 characters
-2026-09-07 13:44:36 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_varieties.txt
-2026-09-07 13:44:36 | INFO     | MongoDB: Inserted document 6a9e726c8bffeab20e951c21
-2026-09-07 13:44:36 | INFO     | Source run finished: success
-2026-09-07 13:44:36 | INFO     | ======================================================================
+2026-09-07 16:42:04 | INFO     | ======================================================================
+2026-09-07 16:42:04 | INFO     | SOURCE: iipr_varieties
+2026-09-07 16:42:04 | INFO     | NAME:   ICAR-IIPR – Variety Database
+2026-09-07 16:42:04 | INFO     | MODALITY: web
+2026-09-07 16:42:04 | INFO     | URL:    https://www.icar-iipr.org.in/varity/
+2026-09-07 16:42:04 | INFO     | ======================================================================
+2026-09-07 16:42:04 | INFO     | Invoking tool: scrape_web
+2026-09-07 16:42:07 | INFO     | Extraction successful: 22580 characters
+2026-09-07 16:42:07 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_varieties.txt
+2026-09-07 16:42:07 | INFO     | MongoDB: Inserted document 6a9e9c07c697d67936951312
+2026-09-07 16:42:07 | INFO     | Source run finished: success
+2026-09-07 16:42:07 | INFO     | ======================================================================

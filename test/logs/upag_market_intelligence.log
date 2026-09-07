@@ -1,12 +1,12 @@
-2026-09-07 13:44:25 | INFO     | ======================================================================
-2026-09-07 13:44:25 | INFO     | SOURCE: upag_market_intelligence
-2026-09-07 13:44:25 | INFO     | NAME:   UPAg – Market Intelligence Reports
-2026-09-07 13:44:25 | INFO     | MODALITY: dynamic_web
-2026-09-07 13:44:25 | INFO     | URL:    https://upag.gov.in/primary-estimate-report?tab=Market+Intelligence+Reports
-2026-09-07 13:44:25 | INFO     | ======================================================================
-2026-09-07 13:44:25 | INFO     | Invoking tool: scrape_dynamic
-2026-09-07 13:44:33 | INFO     | Extraction successful: 208 characters
-2026-09-07 13:44:33 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/upag_market_intelligence.txt
-2026-09-07 13:44:33 | INFO     | MongoDB: Inserted document 6a9e72698bffeab20e951c20
-2026-09-07 13:44:33 | INFO     | Source run finished: success
-2026-09-07 13:44:33 | INFO     | ======================================================================
+2026-09-07 16:41:56 | INFO     | ======================================================================
+2026-09-07 16:41:56 | INFO     | SOURCE: upag_market_intelligence
+2026-09-07 16:41:56 | INFO     | NAME:   UPAg – Market Intelligence Reports
+2026-09-07 16:41:56 | INFO     | MODALITY: dynamic_web
+2026-09-07 16:41:56 | INFO     | URL:    https://upag.gov.in/primary-estimate-report?tab=Market+Intelligence+Reports
+2026-09-07 16:41:56 | INFO     | ======================================================================
+2026-09-07 16:41:56 | INFO     | Invoking tool: scrape_dynamic
+2026-09-07 16:42:04 | INFO     | Extraction successful: 208 characters
+2026-09-07 16:42:04 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/upag_market_intelligence.txt
+2026-09-07 16:42:04 | INFO     | MongoDB: Inserted document 6a9e9c04c697d67936951311
+2026-09-07 16:42:04 | INFO     | Source run finished: success
+2026-09-07 16:42:04 | INFO     | ======================================================================

@@ -1,12 +1,12 @@
-2026-09-07 13:44:51 | INFO     | ======================================================================
-2026-09-07 13:44:51 | INFO     | SOURCE: gda_rapeseed_2024
-2026-09-07 13:44:51 | INFO     | NAME:   GDA CropID 2024 Rabi Rapeseed – Product Documentation
-2026-09-07 13:44:51 | INFO     | MODALITY: web_doc
-2026-09-07 13:44:51 | INFO     | URL:    https://glam1.gsfc.nasa.gov/api/doc/cropmask/v1/GDA-CropID-SouthAsia_2024_RapeseedWinter
-2026-09-07 13:44:51 | INFO     | ======================================================================
-2026-09-07 13:44:51 | INFO     | Invoking tool: scrape_web
-2026-09-07 13:44:53 | INFO     | Extraction successful: 3039 characters
-2026-09-07 13:44:53 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/gda_rapeseed_2024.txt
-2026-09-07 13:44:53 | INFO     | MongoDB: Inserted document 6a9e727d8bffeab20e951c25
-2026-09-07 13:44:53 | INFO     | Source run finished: success
-2026-09-07 13:44:53 | INFO     | ======================================================================
+2026-09-07 16:42:41 | INFO     | ======================================================================
+2026-09-07 16:42:41 | INFO     | SOURCE: gda_rapeseed_2024
+2026-09-07 16:42:41 | INFO     | NAME:   GDA CropID 2024 Rabi Rapeseed – Product Documentation
+2026-09-07 16:42:41 | INFO     | MODALITY: web_doc
+2026-09-07 16:42:41 | INFO     | URL:    https://glam1.gsfc.nasa.gov/api/doc/cropmask/v1/GDA-CropID-SouthAsia_2024_RapeseedWinter
+2026-09-07 16:42:41 | INFO     | ======================================================================
+2026-09-07 16:42:41 | INFO     | Invoking tool: scrape_web
+2026-09-07 16:42:43 | INFO     | Extraction successful: 3039 characters
+2026-09-07 16:42:43 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/gda_rapeseed_2024.txt
+2026-09-07 16:42:43 | INFO     | MongoDB: Inserted document 6a9e9c2bc697d67936951316
+2026-09-07 16:42:43 | INFO     | Source run finished: success
+2026-09-07 16:42:43 | INFO     | ======================================================================

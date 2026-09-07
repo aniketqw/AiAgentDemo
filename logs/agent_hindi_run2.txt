@@ -1,0 +1,9 @@
+/Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/.venv/lib/python3.10/site-packages/paddle/utils/cpp_extension/extension_utils.py:718: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
+  warnings.warn(warning_message)
+Hindi-aware agent query: Extract this Hindi UP Agriculture PDF and save it to MongoDB: https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d
+
+
+Final answer:
+------------------------------------------------------------
+Extracted 795 characters from https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d. Inserted document 6a9e9c9d1019dc3cc3d95a1b.
+------------------------------------------------------------

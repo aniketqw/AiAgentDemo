@@ -1,12 +1,13 @@
-2026-09-07 13:44:43 | INFO     | ======================================================================
-2026-09-07 13:44:43 | INFO     | SOURCE: up_agri_seed_rates
-2026-09-07 13:44:43 | INFO     | NAME:   UP Agriculture Department – Rabi 2025–26 Certified Seed Rates
-2026-09-07 13:44:43 | INFO     | MODALITY: pdf
-2026-09-07 13:44:43 | INFO     | URL:    https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d
-2026-09-07 13:44:43 | INFO     | ======================================================================
-2026-09-07 13:44:43 | INFO     | Invoking tool: extract_pdf
-2026-09-07 13:44:51 | INFO     | Extraction successful: 1340 characters
-2026-09-07 13:44:51 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/up_agri_seed_rates.txt
-2026-09-07 13:44:51 | INFO     | MongoDB: Inserted document 6a9e727b8bffeab20e951c24
-2026-09-07 13:44:51 | INFO     | Source run finished: success
-2026-09-07 13:44:51 | INFO     | ======================================================================
+2026-09-07 16:42:15 | INFO     | ======================================================================
+2026-09-07 16:42:15 | INFO     | SOURCE: up_agri_seed_rates
+2026-09-07 16:42:15 | INFO     | NAME:   UP Agriculture Department – Rabi 2025–26 Certified Seed Rates
+2026-09-07 16:42:15 | INFO     | MODALITY: pdf
+2026-09-07 16:42:15 | INFO     | URL:    https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d
+2026-09-07 16:42:15 | INFO     | ======================================================================
+2026-09-07 16:42:15 | INFO     | Overriding modality 'pdf' → extract_hindi_pdf for Hindi PDF
+2026-09-07 16:42:15 | INFO     | Invoking tool: extract_hindi_pdf
+2026-09-07 16:42:41 | INFO     | Extraction successful: 795 characters
+2026-09-07 16:42:41 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/up_agri_seed_rates.txt
+2026-09-07 16:42:41 | INFO     | MongoDB: Inserted document 6a9e9c29c697d67936951315
+2026-09-07 16:42:41 | INFO     | Source run finished: success
+2026-09-07 16:42:41 | INFO     | ======================================================================

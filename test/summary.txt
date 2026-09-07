@@ -1,8 +1,8 @@
-Test run at 2026-09-07T08:14:53.265996+00:00
+Test run at 2026-09-07T11:12:43.738206+00:00
 Total sources: 6
-upag_market_intelligence | dynamic_web | success | chars=208 | mongodb=Inserted document 6a9e72698bffeab20e951c20 | error=
-iipr_varieties | web | success | chars=22580 | mongodb=Inserted document 6a9e726c8bffeab20e951c21 | error=
-iipr_new_varieties | web | success | chars=42078 | mongodb=Inserted document 6a9e72708bffeab20e951c22 | error=
-iipr_technologies | web | success | chars=28710 | mongodb=Inserted document 6a9e72738bffeab20e951c23 | error=
-up_agri_seed_rates | pdf | success | chars=1340 | mongodb=Inserted document 6a9e727b8bffeab20e951c24 | error=
-gda_rapeseed_2024 | web_doc | success | chars=3039 | mongodb=Inserted document 6a9e727d8bffeab20e951c25 | error=
+upag_market_intelligence | dynamic_web | success | chars=208 | mongodb=Inserted document 6a9e9c04c697d67936951311 | error=
+iipr_varieties | web | success | chars=22580 | mongodb=Inserted document 6a9e9c07c697d67936951312 | error=
+iipr_new_varieties | web | success | chars=42078 | mongodb=Inserted document 6a9e9c0bc697d67936951313 | error=
+iipr_technologies | web | success | chars=28710 | mongodb=Inserted document 6a9e9c0fc697d67936951314 | error=
+up_agri_seed_rates | pdf | success | chars=795 | mongodb=Inserted document 6a9e9c29c697d67936951315 | error=
+gda_rapeseed_2024 | web_doc | success | chars=3039 | mongodb=Inserted document 6a9e9c2bc697d67936951316 | error=

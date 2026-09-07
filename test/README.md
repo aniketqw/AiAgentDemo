@@ -23,7 +23,7 @@ test/
 │   ├── iipr_varieties.txt
 │   ├── iipr_new_varieties.txt
 │   ├── iipr_technologies.txt
-│   ├── up_agri_seed_rates.txt
+│   ├── up_agri_seed_rates.txt          # now extracted with PaddleOCR
 │   └── gda_rapeseed_2024.txt
 ├── summary.txt
 └── README.md          # this file
@@ -97,7 +97,7 @@ mongosh agent_demo --eval 'db.documents.find({source: "https://www.icar-iipr.org
 | `iipr_varieties` | `web` | `scrape_web` (smart static fallback) |
 | `iipr_new_varieties` | `web` | `scrape_web` (smart static fallback) |
 | `iipr_technologies` | `web` | `scrape_web` (smart static fallback) |
-| `up_agri_seed_rates` | `pdf` | `extract_pdf` (pypdf → pymupdf → OCR) |
+| `up_agri_seed_rates` | `pdf` (overridden) | `extract_hindi_pdf` (PaddleOCR `lang='hi'`) |
 | `gda_rapeseed_2024` | `web_doc` | `scrape_web` (smart static fallback) |
 
 ## MongoDB Compass: what to screenshot
@@ -138,14 +138,80 @@ exactly what the test saved.
    ![alt text](images/image3.png)
 
 
+## Note on the UP Agriculture seed-rates PDF
+
+The `up_agri_seed_rates` source is a scanned **Hindi / Devanagari** PDF. The
+base `extract_pdf` tool uses Tesseract with default Latin models, which produces
+gibberish on Devanagari glyphs.
+
+For this specific source, use the Hindi-aware tool instead:
+
+```bash
+python demo.py hindi_pdf https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d
+```
+
+Output is written to:
+
+- `test/outputs/up_agri_seed_rates.txt` — automated OCR + heuristic formatting
+- `test/outputs/up_agri_seed_rates_reference.txt` — manually corrected transcript
+  from the scanned image, for comparison only (not produced by the pipeline)
+
+Or run the Hindi-aware agent, which uses a combined `extract_and_save_hindi_pdf`
+pipeline to extract and persist in one tool call (more reliable with a local LLM):
+
+```bash
+python demo.py agent_hindi "Extract this Hindi UP Agriculture PDF and save it to MongoDB: https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d"
+```
+
+Agent run is logged in:
+
+- `logs/agent_hindi_run2.txt`
+
+The final MongoDB state after the test suite + agent is logged in:
+
+- `logs/final_mongo_state.txt`
+
+### What the saved file looks like
+
+PaddleOCR returns the text, but scanned government PDFs still contain OCR noise:
+Devanagari words may be run together, Latin characters can replace Hindi glyphs
+(e.g. `Plofah` instead of `प्रदाय`), and prices can be mis-recognized. The
+default `"heuristic"` formatting mode improves readability by rebuilding
+paragraphs and attempting a Markdown table, but it does **not** change any
+words or numbers, so the file remains a faithful (if noisy) extraction.
+
+To switch modes programmatically:
+
+```python
+from tools.hindi_pdf_extractor.core import hindi_pdf_extractor
+
+# default: safe reformatting, no content changes
+text = hindi_pdf_extractor(url, format_mode="heuristic")
+
+# raw OCR lines for debugging recognition
+text = hindi_pdf_extractor(url, format_mode="raw")
+
+# local LLM cleanup: more readable, but may invent rows/prices
+text = hindi_pdf_extractor(url, format_mode="llm")
+```
+
+For a production knowledge base you would either use a stronger OCR model or
+review the scanned page manually.
+
+PaddleOCR downloads the Hindi model on first run, so the first execution may
+take a minute or two.
+
 ## Expected final state
 
-After a successful run:
+After a successful run of `test/test_sources.py`:
 
 - 6 `.log` files in `test/logs/`
 - 6 `.txt` files in `test/outputs/`
 - 6 documents in MongoDB `agent_demo.documents`
 - `test/summary.txt` shows all sources as `success`
+
+If you also run the Hindi-aware agent (`demo.py agent_hindi ...`) on the UP
+Agriculture PDF, a 7th document is inserted for the same source.
 
 ## Troubleshooting
 
@@ -181,9 +247,3 @@ Fix:
 playwright install chromium
 ```
 
-### OCR garbled text on scanned PDF
-
-The `up_agri_seed_rates` PDF is a scanned government document. If OCR returns
-garbled characters, it usually means the local Tesseract language data does not
-match the document language. The fallback chain still ran correctly; improving
-OCR language packs is a separate step.

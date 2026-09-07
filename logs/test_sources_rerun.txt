@@ -1,0 +1,99 @@
+Starting no-LLM source test run at 2026-09-07T11:11:56.776058+00:00
+Reading sources from: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/5sep/sources.csv
+
+MongoDB connection: OK
+
+Loaded 6 source(s).
+
+2026-09-07 16:41:56 | INFO     | ======================================================================
+2026-09-07 16:41:56 | INFO     | SOURCE: upag_market_intelligence
+2026-09-07 16:41:56 | INFO     | NAME:   UPAg – Market Intelligence Reports
+2026-09-07 16:41:56 | INFO     | MODALITY: dynamic_web
+2026-09-07 16:41:56 | INFO     | URL:    https://upag.gov.in/primary-estimate-report?tab=Market+Intelligence+Reports
+2026-09-07 16:41:56 | INFO     | ======================================================================
+2026-09-07 16:41:56 | INFO     | Invoking tool: scrape_dynamic
+2026-09-07 16:42:04 | INFO     | Extraction successful: 208 characters
+2026-09-07 16:42:04 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/upag_market_intelligence.txt
+2026-09-07 16:42:04 | INFO     | MongoDB: Inserted document 6a9e9c04c697d67936951311
+2026-09-07 16:42:04 | INFO     | Source run finished: success
+2026-09-07 16:42:04 | INFO     | ======================================================================
+2026-09-07 16:42:04 | INFO     | ======================================================================
+2026-09-07 16:42:04 | INFO     | SOURCE: iipr_varieties
+2026-09-07 16:42:04 | INFO     | NAME:   ICAR-IIPR – Variety Database
+2026-09-07 16:42:04 | INFO     | MODALITY: web
+2026-09-07 16:42:04 | INFO     | URL:    https://www.icar-iipr.org.in/varity/
+2026-09-07 16:42:04 | INFO     | ======================================================================
+2026-09-07 16:42:04 | INFO     | Invoking tool: scrape_web
+2026-09-07 16:42:07 | INFO     | Extraction successful: 22580 characters
+2026-09-07 16:42:07 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_varieties.txt
+2026-09-07 16:42:07 | INFO     | MongoDB: Inserted document 6a9e9c07c697d67936951312
+2026-09-07 16:42:07 | INFO     | Source run finished: success
+2026-09-07 16:42:07 | INFO     | ======================================================================
+2026-09-07 16:42:07 | INFO     | ======================================================================
+2026-09-07 16:42:07 | INFO     | SOURCE: iipr_new_varieties
+2026-09-07 16:42:07 | INFO     | NAME:   ICAR-IIPR – New Varieties & Recent Research
+2026-09-07 16:42:07 | INFO     | MODALITY: web
+2026-09-07 16:42:07 | INFO     | URL:    https://www.icar-iipr.org.in/new-varieties/
+2026-09-07 16:42:07 | INFO     | ======================================================================
+2026-09-07 16:42:07 | INFO     | Invoking tool: scrape_web
+2026-09-07 16:42:11 | INFO     | Extraction successful: 42078 characters
+2026-09-07 16:42:11 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_new_varieties.txt
+2026-09-07 16:42:11 | INFO     | MongoDB: Inserted document 6a9e9c0bc697d67936951313
+2026-09-07 16:42:11 | INFO     | Source run finished: success
+2026-09-07 16:42:11 | INFO     | ======================================================================
+2026-09-07 16:42:11 | INFO     | ======================================================================
+2026-09-07 16:42:11 | INFO     | SOURCE: iipr_technologies
+2026-09-07 16:42:11 | INFO     | NAME:   ICAR-IIPR – Technologies
+2026-09-07 16:42:11 | INFO     | MODALITY: web
+2026-09-07 16:42:11 | INFO     | URL:    https://www.icar-iipr.org.in/technologies/
+2026-09-07 16:42:11 | INFO     | ======================================================================
+2026-09-07 16:42:11 | INFO     | Invoking tool: scrape_web
+2026-09-07 16:42:15 | INFO     | Extraction successful: 28710 characters
+2026-09-07 16:42:15 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_technologies.txt
+2026-09-07 16:42:15 | INFO     | MongoDB: Inserted document 6a9e9c0fc697d67936951314
+2026-09-07 16:42:15 | INFO     | Source run finished: success
+2026-09-07 16:42:15 | INFO     | ======================================================================
+2026-09-07 16:42:15 | INFO     | ======================================================================
+2026-09-07 16:42:15 | INFO     | SOURCE: up_agri_seed_rates
+2026-09-07 16:42:15 | INFO     | NAME:   UP Agriculture Department – Rabi 2025–26 Certified Seed Rates
+2026-09-07 16:42:15 | INFO     | MODALITY: pdf
+2026-09-07 16:42:15 | INFO     | URL:    https://agridarshan.up.gov.in/api/v2/downloadPublic/0a7396d2-8cea-4112-9d4f-9cf9e7bd634d
+2026-09-07 16:42:15 | INFO     | ======================================================================
+2026-09-07 16:42:15 | INFO     | Overriding modality 'pdf' → extract_hindi_pdf for Hindi PDF
+2026-09-07 16:42:15 | INFO     | Invoking tool: extract_hindi_pdf
+/Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/.venv/lib/python3.10/site-packages/paddle/utils/cpp_extension/extension_utils.py:718: UserWarning: No ccache found. Please be aware that recompiling all source files may be required. You can download and install ccache from: https://github.com/ccache/ccache/blob/master/doc/INSTALL.md
+  warnings.warn(warning_message)
+2026-09-07 16:42:41 | INFO     | Extraction successful: 795 characters
+2026-09-07 16:42:41 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/up_agri_seed_rates.txt
+2026-09-07 16:42:41 | INFO     | MongoDB: Inserted document 6a9e9c29c697d67936951315
+2026-09-07 16:42:41 | INFO     | Source run finished: success
+2026-09-07 16:42:41 | INFO     | ======================================================================
+2026-09-07 16:42:41 | INFO     | ======================================================================
+2026-09-07 16:42:41 | INFO     | SOURCE: gda_rapeseed_2024
+2026-09-07 16:42:41 | INFO     | NAME:   GDA CropID 2024 Rabi Rapeseed – Product Documentation
+2026-09-07 16:42:41 | INFO     | MODALITY: web_doc
+2026-09-07 16:42:41 | INFO     | URL:    https://glam1.gsfc.nasa.gov/api/doc/cropmask/v1/GDA-CropID-SouthAsia_2024_RapeseedWinter
+2026-09-07 16:42:41 | INFO     | ======================================================================
+2026-09-07 16:42:41 | INFO     | Invoking tool: scrape_web
+2026-09-07 16:42:43 | INFO     | Extraction successful: 3039 characters
+2026-09-07 16:42:43 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/gda_rapeseed_2024.txt
+2026-09-07 16:42:43 | INFO     | MongoDB: Inserted document 6a9e9c2bc697d67936951316
+2026-09-07 16:42:43 | INFO     | Source run finished: success
+2026-09-07 16:42:43 | INFO     | ======================================================================
+
+====================================================================================================
+TEST RUN SUMMARY
+====================================================================================================
+Source ID                      Modality     Status     Chars      MongoDB ID                     Log File                      
+----------------------------------------------------------------------------------------------------
+upag_market_intelligence       dynamic_web  success    208        Inserted document 6a9e9c04c697d67936951311 upag_market_intelligence.log  
+iipr_varieties                 web          success    22580      Inserted document 6a9e9c07c697d67936951312 iipr_varieties.log            
+iipr_new_varieties             web          success    42078      Inserted document 6a9e9c0bc697d67936951313 iipr_new_varieties.log        
+iipr_technologies              web          success    28710      Inserted document 6a9e9c0fc697d67936951314 iipr_technologies.log         
+up_agri_seed_rates             pdf          success    795        Inserted document 6a9e9c29c697d67936951315 up_agri_seed_rates.log        
+gda_rapeseed_2024              web_doc      success    3039       Inserted document 6a9e9c2bc697d67936951316 gda_rapeseed_2024.log         
+----------------------------------------------------------------------------------------------------
+Total: 6 | Success: 6 | Failed: 0 | Skipped: 0
+====================================================================================================
+
+Summary written to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/summary.txt

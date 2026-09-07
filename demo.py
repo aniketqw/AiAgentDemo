@@ -18,6 +18,7 @@ import sys
 
 from agent import agent_executor as agent
 from tools import (
+    extract_hindi_pdf,
     extract_pdf,
     save_to_mongodb,
     scrape_dynamic,
@@ -42,6 +43,7 @@ def _usage() -> None:
     print("  python demo.py static <URL>")
     print("  python demo.py playwright <URL>")
     print("  python demo.py pdf <URL>")
+    print("  python demo.py hindi_pdf <URL>")
     print("  python demo.py mongo [optional_source_filter]")
     print("  python demo.py save <text> <source>")
     print("  python demo.py agent \"<question>\"")
@@ -94,6 +96,19 @@ def main() -> int:
         return 0
 
     # ------------------------------------------------------------------
+    # Hindi PDF extractor (PaddleOCR)
+    # ------------------------------------------------------------------
+    if command == "hindi_pdf":
+        if len(sys.argv) < 3:
+            print("Please provide a Hindi PDF URL.")
+            return 1
+        url = sys.argv[2]
+        print(f"Hindi PDF extract (PaddleOCR): {url}\n")
+        text = extract_hindi_pdf.invoke(url)
+        _print_preview(text)
+        return 0
+
+    # ------------------------------------------------------------------
     # MongoDB search
     # ------------------------------------------------------------------
     if command == "mongo":
@@ -118,7 +133,7 @@ def main() -> int:
         return 0
 
     # ------------------------------------------------------------------
-    # Full ReAct agent
+    # Full ReAct agent (also handles Hindi PDFs via extract_and_save_hindi_pdf)
     # ------------------------------------------------------------------
     if command == "agent":
         if len(sys.argv) < 3:
@@ -126,10 +141,18 @@ def main() -> int:
             return 1
         question = " ".join(sys.argv[2:])
         print(f"Agent query: {question}\n")
-        result = agent.invoke({"input": question})
+        result = agent.invoke(
+            {
+                "messages": [
+                    {"role": "user", "content": question}
+                ]
+            },
+            config={"configurable": {"thread_id": "demo-thread"}},
+        )
+        final_answer = result["messages"][-1].content
         print("\nFinal answer:")
         print("-" * 60)
-        print(result["output"])
+        print(final_answer)
         print("-" * 60)
         return 0
 

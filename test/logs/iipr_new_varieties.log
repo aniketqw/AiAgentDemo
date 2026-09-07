@@ -1,12 +1,12 @@
-2026-09-07 13:44:36 | INFO     | ======================================================================
-2026-09-07 13:44:36 | INFO     | SOURCE: iipr_new_varieties
-2026-09-07 13:44:36 | INFO     | NAME:   ICAR-IIPR – New Varieties & Recent Research
-2026-09-07 13:44:36 | INFO     | MODALITY: web
-2026-09-07 13:44:36 | INFO     | URL:    https://www.icar-iipr.org.in/new-varieties/
-2026-09-07 13:44:36 | INFO     | ======================================================================
-2026-09-07 13:44:36 | INFO     | Invoking tool: scrape_web
-2026-09-07 13:44:40 | INFO     | Extraction successful: 42078 characters
-2026-09-07 13:44:40 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_new_varieties.txt
-2026-09-07 13:44:40 | INFO     | MongoDB: Inserted document 6a9e72708bffeab20e951c22
-2026-09-07 13:44:40 | INFO     | Source run finished: success
-2026-09-07 13:44:40 | INFO     | ======================================================================
+2026-09-07 16:42:07 | INFO     | ======================================================================
+2026-09-07 16:42:07 | INFO     | SOURCE: iipr_new_varieties
+2026-09-07 16:42:07 | INFO     | NAME:   ICAR-IIPR – New Varieties & Recent Research
+2026-09-07 16:42:07 | INFO     | MODALITY: web
+2026-09-07 16:42:07 | INFO     | URL:    https://www.icar-iipr.org.in/new-varieties/
+2026-09-07 16:42:07 | INFO     | ======================================================================
+2026-09-07 16:42:07 | INFO     | Invoking tool: scrape_web
+2026-09-07 16:42:11 | INFO     | Extraction successful: 42078 characters
+2026-09-07 16:42:11 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_new_varieties.txt
+2026-09-07 16:42:11 | INFO     | MongoDB: Inserted document 6a9e9c0bc697d67936951313
+2026-09-07 16:42:11 | INFO     | Source run finished: success
+2026-09-07 16:42:11 | INFO     | ======================================================================

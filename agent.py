@@ -4,14 +4,16 @@ The agent does NOT contain scraping, parsing, or database logic.
 Its only job is to decide which tool to call for a user request.
 
 The heavy lifting lives in the tools/ package; this file just wires the LLM
-to those capabilities through LangChain's tool-calling agent framework.
+to those capabilities through LangGraph's prebuilt ReAct agent.
 """
 
-from langchain.agents import AgentExecutor, create_tool_calling_agent
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+from langgraph.checkpoint.memory import MemorySaver
+from langgraph.prebuilt import create_react_agent
 
 from config import llm
 from tools import (
+    extract_and_save_hindi_pdf,
+    extract_hindi_pdf,
     extract_pdf,
     save_to_mongodb,
     scrape_dynamic,
@@ -26,6 +28,8 @@ tools = [
     scrape_dynamic,
     scrape_web,
     extract_pdf,
+    extract_hindi_pdf,
+    extract_and_save_hindi_pdf,
     save_to_mongodb,
     search_mongodb,
 ]
@@ -42,25 +46,33 @@ Tool selection rules:
 - scrape_dynamic: use for JavaScript-rendered pages that need a real browser.
 - scrape_web: use when you are unsure whether the page is static or dynamic;
   it tries static first and falls back to the browser automatically.
-- extract_pdf: use when the user provides a PDF URL.
-- save_to_mongodb: use when the user asks to store, save, or persist content.
+- extract_pdf: use when the user provides an English / Latin-script / text-based
+  PDF URL.
+- extract_hindi_pdf: use when the user wants ONLY the raw text of a Hindi /
+  Devanagari scanned PDF (for example, a UP Agriculture Department circular).
+  Do not use this tool when the user also asks to save the result.
+- extract_and_save_hindi_pdf: use when the user wants to extract a Hindi /
+  Devanagari scanned PDF AND save/persist/store it. This single tool downloads
+  the PDF, extracts Hindi text with PaddleOCR, and inserts it into MongoDB in
+  one call. It returns the real MongoDB insertion message. This is the safest
+  choice for Hindi PDF storage because the local LLM does not have to copy
+  extracted text across two separate tool calls.
+- save_to_mongodb: use when the user asks to store, save, or persist content
+  that came from a web scraper or from extract_pdf (English PDFs).
 - search_mongodb: use when the user asks about previously stored content.
 
 Important:
 - Call tools with the exact arguments they require.
 - Never pretend you used a tool when you did not.
+- Never invent extracted text, source URLs, or document IDs.
+- When a tool returns a result, report that result to the user exactly.
 - If a task needs multiple steps (e.g., scrape then save), make each tool call
   separately and use the returned result in the next step.
 """
 
-prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", SYSTEM_PROMPT),
-        MessagesPlaceholder(variable_name="chat_history", optional=True),
-        ("human", "{input}"),
-        MessagesPlaceholder(variable_name="agent_scratchpad"),
-    ]
+agent_executor = create_react_agent(
+    model=llm,
+    tools=tools,
+    prompt=SYSTEM_PROMPT,
+    checkpointer=MemorySaver(),
 )
-
-agent = create_tool_calling_agent(llm, tools, prompt)
-agent_executor = AgentExecutor(agent=agent, tools=tools, verbose=True)

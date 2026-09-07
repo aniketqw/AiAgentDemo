@@ -28,3 +28,10 @@ pillow>=10.0.0
 
 # Browser fallback for JavaScript-driven pages
 playwright>=1.44.0
+
+# Hindi / Devanagari OCR for scanned government PDFs
+# Install paddlepaddle CPU first, then paddleocr:
+#   pip install paddlepaddle==3.2.0 -i https://www.paddlepaddle.org.cn/packages/stable/cpu/
+#   pip install paddleocr
+paddleocr>=2.9.0
+numpy>=1.26.0
