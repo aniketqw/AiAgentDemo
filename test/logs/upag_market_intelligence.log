@@ -1,0 +1,12 @@
+2026-09-07 13:28:49 | INFO     | ======================================================================
+2026-09-07 13:28:49 | INFO     | SOURCE: upag_market_intelligence
+2026-09-07 13:28:49 | INFO     | NAME:   UPAg – Market Intelligence Reports
+2026-09-07 13:28:49 | INFO     | MODALITY: dynamic_web
+2026-09-07 13:28:49 | INFO     | URL:    https://upag.gov.in/primary-estimate-report?tab=Market+Intelligence+Reports
+2026-09-07 13:28:49 | INFO     | ======================================================================
+2026-09-07 13:28:49 | INFO     | Invoking tool: scrape_dynamic
+2026-09-07 13:28:57 | INFO     | Extraction successful: 208 characters
+2026-09-07 13:28:57 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/upag_market_intelligence.txt
+2026-09-07 13:29:27 | ERROR    | FAILED: ServerSelectionTimeoutError: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6a9e6eb9ffe278c8814a2647, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2026-09-07 13:29:27 | INFO     | Source run finished: failed
+2026-09-07 13:29:27 | INFO     | ======================================================================

@@ -1,0 +1,12 @@
+2026-09-07 13:29:27 | INFO     | ======================================================================
+2026-09-07 13:29:27 | INFO     | SOURCE: iipr_varieties
+2026-09-07 13:29:27 | INFO     | NAME:   ICAR-IIPR – Variety Database
+2026-09-07 13:29:27 | INFO     | MODALITY: web
+2026-09-07 13:29:27 | INFO     | URL:    https://www.icar-iipr.org.in/varity/
+2026-09-07 13:29:27 | INFO     | ======================================================================
+2026-09-07 13:29:27 | INFO     | Invoking tool: scrape_web
+2026-09-07 13:29:35 | INFO     | Extraction successful: 22580 characters
+2026-09-07 13:29:35 | INFO     | Saved extracted text to: /Users/aniketsaxena/Documents/p/from_aug_1/p0/dailyPrep/7sep/AiAgentDemo/test/outputs/iipr_varieties.txt
+2026-09-07 13:30:05 | ERROR    | FAILED: ServerSelectionTimeoutError: localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms), Timeout: 30s, Topology Description: <TopologyDescription id: 6a9e6eb9ffe278c8814a2647, topology_type: Unknown, servers: [<ServerDescription ('localhost', 27017) server_type: Unknown, rtt: None, error=AutoReconnect('localhost:27017: [Errno 61] Connection refused (configured timeouts: socketTimeoutMS: 20000.0ms, connectTimeoutMS: 20000.0ms)')>]>
+2026-09-07 13:30:05 | INFO     | Source run finished: failed
+2026-09-07 13:30:05 | INFO     | ======================================================================
